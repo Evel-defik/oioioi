@@ -152,26 +152,136 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
+      key: const ValueKey(0),
+      startActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        extentRatio: 0.5,
+        children: [
+          CustomSlidableAction(
+            onPressed: (context) {},
+            backgroundColor: const Color(0xFF666666),
+            foregroundColor: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/unread.svg',
+                  width: 20.w,
+                  height: 20.w,
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Unread',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'CaviarDreams',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          CustomSlidableAction(
+            onPressed: (context) {},
+            backgroundColor: const Color(0xFF08A723),
+            foregroundColor: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/pin2.svg',
+                  width: 20.w,
+                  height: 20.w,
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Pin',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'CaviarDreams',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
+        extentRatio: 0.75,
         children: [
-          SlidableAction(
+          CustomSlidableAction(
             onPressed: (context) {},
-            icon: Icons.delete,
-            backgroundColor: const Color(0xFFE74C3C),
+            backgroundColor: const Color(0xFFCD7800),
             foregroundColor: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/mute2.svg',
+                  width: 20.w,
+                  height: 20.w,
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Mute',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'CaviarDreams',
+                  ),
+                ),
+              ],
+            ),
           ),
-          SlidableAction(
+          CustomSlidableAction(
             onPressed: (context) {},
-            icon: Icons.archive,
+            backgroundColor: const Color(0xFFC60C0C),
+            foregroundColor: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/delete.svg',
+                  width: 20.w,
+                  height: 20.w,
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Delete',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'CaviarDreams',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          CustomSlidableAction(
+            onPressed: (context) {},
             backgroundColor: const Color(0xFF636366),
             foregroundColor: const Color(0xFFFFFFFF),
-          ),
-          SlidableAction(
-            onPressed: (context) {},
-            icon: Icons.notifications_off,
-            backgroundColor: const Color(0xFF636366),
-            foregroundColor: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/archive.svg',
+                  width: 20.w,
+                  height: 20.w,
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Archive',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'CaviarDreams',
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
