@@ -20,6 +20,10 @@ class MyApp extends StatelessWidget {
             colorScheme:
                 ColorScheme.fromSeed(seedColor: const Color(0xFF000000)),
             useMaterial3: true,
+          ).copyWith(
+            textTheme: Theme.of(context)
+                .textTheme
+                .apply(bodyColor: const Color(0xFF36F4EE)),
           ),
           home: const AuthPage(),
           builder: (context, child) => MediaQuery(
