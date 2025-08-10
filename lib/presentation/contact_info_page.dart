@@ -9,15 +9,25 @@ class ContactInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: 'Zack');
+    TextEditingController surnameController =
+        TextEditingController(text: 'Sasak');
+    TextEditingController mainController =
+        TextEditingController(text: '+998 97 444 67 17');
+    TextEditingController homeController =
+        TextEditingController(text: '+998 90 934 50 44');
+    TextEditingController bioController = TextEditingController(
+        text: 'Design adds value faster, than it adds cost');
+
     return DefaultBody(
       title: 'Info',
       leading: 'Cancel',
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            top: 16.h,
-            bottom: 16.h,
-            left: 16.w,
+            top: 15.h,
+            bottom: 15.h,
+            left: 15.w,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +49,13 @@ class ContactInfoPage extends StatelessWidget {
                             left: 12.w,
                             bottom: 8.h,
                           ),
-                          child: Text('Zack', style: CaviarDreams400.s17),
+                          child: TextField(
+                            controller: nameController,
+                            style: CaviarDreams400.s17,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
                         Container(
                           height: 1.h,
@@ -52,17 +68,25 @@ class ContactInfoPage extends StatelessWidget {
                             bottom: 8.h,
                             top: 8.h,
                           ),
-                          child: Text('Sasak', style: CaviarDreams400.s17),
+                          child: TextField(
+                            controller: surnameController,
+                            style: CaviarDreams400.s17,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-              const _Shablon(s1: 'main', s2: '+998 97 444 67 17'),
-              const _Shablon(s1: 'home', s2: '+998 90 934 50 44'),
-              const _Shablon(
-                  s1: 'bio', s2: 'Design adds value faster, than it adds cost'),
+              Shablon(
+                s1: 'main',
+                s2: mainController,
+              ),
+              Shablon(s1: 'home', s2: homeController),
+              Shablon(s1: 'bio', s2: bioController),
               Padding(
                 padding: EdgeInsets.only(right: 16.w),
                 child: Row(
@@ -85,6 +109,10 @@ class ContactInfoPage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 20.h),
+              Text('Delete contact',
+                  style: CaviarDreams400.s17
+                      .apply(color: const Color(0xDFD20F9B))),
             ],
           ),
         ),
@@ -93,11 +121,11 @@ class ContactInfoPage extends StatelessWidget {
   }
 }
 
-class _Shablon extends StatelessWidget {
+class Shablon extends StatelessWidget {
   final String s1;
-  final String s2;
+  final TextEditingController s2;
 
-  const _Shablon({required this.s1, required this.s2});
+  const Shablon({super.key, required this.s1, required this.s2});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +136,12 @@ class _Shablon extends StatelessWidget {
         children: [
           Text(s1, style: CaviarDreams400.s14),
           SizedBox(height: 2.h),
-          Text(s2, style: CaviarDreams400.s17),
+          TextField(
+              controller: s2,
+              style: CaviarDreams400.s17,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+              )),
         ],
       ),
     );

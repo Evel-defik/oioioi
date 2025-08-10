@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oioioi/default_body.dart';
+import 'package:oioioi/presentation/info2_page.dart';
 
 class MessagePage extends StatefulWidget {
   final Map<String, dynamic> chat;
@@ -21,6 +22,8 @@ class _MessagePageState extends State<MessagePage> {
       leading: 'Chats',
       lastSeen: 'just now',
       withBackButton: true,
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Info2Page())),
       body: Container(
         height: double.maxFinite,
         decoration: const BoxDecoration(
@@ -79,8 +82,8 @@ class _MessagePageState extends State<MessagePage> {
                 },
               ),
             ),
-            Spacer(),
-            _InputBar(),
+            const Spacer(),
+            const _InputBar(),
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:oioioi/presentation/contact_info_page.dart';
 
 class DefaultBody extends StatefulWidget {
   final Widget body;
@@ -11,6 +10,8 @@ class DefaultBody extends StatefulWidget {
   final bool withBackButton;
   final String? lastSeen;
   final String? actions;
+  final void Function()? onTap;
+  final void Function()? onTap2;
 
   const DefaultBody({
     super.key,
@@ -21,6 +22,8 @@ class DefaultBody extends StatefulWidget {
     this.withBackButton = false,
     this.lastSeen,
     this.actions,
+    this.onTap,
+    this.onTap2,
   });
 
   @override
@@ -39,10 +42,7 @@ class _DefaultBodyState extends State<DefaultBody> {
               ? Column(
                   children: [
                     GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ContactInfoPage())),
+                      onTap: widget.onTap,
                       child: Text(
                         widget.title!,
                         style: TextStyle(
@@ -81,7 +81,7 @@ class _DefaultBodyState extends State<DefaultBody> {
                               'assets/images/arrow_left.svg',
                               width: 12.w,
                               height: 20.h,
-                              color: Color(0xFF36F4EE),
+                              color: const Color(0xFF36F4EE),
                             ),
                             SizedBox(width: 2.w),
                           ],
@@ -101,23 +101,39 @@ class _DefaultBodyState extends State<DefaultBody> {
             ),
           ),
           actions: [
-            widget.actions != null && widget.actions!.endsWith("svg")
-                ? SvgPicture.asset(
-                    widget.actions!,
-                    width: 20.w,
-                    height: 20.w,
-                    colorFilter: const ColorFilter.mode(
-                      Color(0xFF36F4EE),
-                      BlendMode.srcIn,
+            widget.onTap2 != null
+                ? GestureDetector(
+                    onTap: widget.onTap2,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 10.w),
+                      child: Text(
+                        widget.actions!,
+                        style: TextStyle(
+                          color: const Color(0xFF36F4EE),
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'CaviarDreams',
+                        ),
+                      ),
                     ),
                   )
-                : widget.actions != null
-                    ? Image.asset(
+                : widget.actions != null && widget.actions!.endsWith("svg")
+                    ? SvgPicture.asset(
                         widget.actions!,
                         width: 20.w,
                         height: 20.w,
+                        colorFilter: const ColorFilter.mode(
+                          Color(0xFF36F4EE),
+                          BlendMode.srcIn,
+                        ),
                       )
-                    : const SizedBox.shrink(),
+                    : widget.actions != null
+                        ? Image.asset(
+                            widget.actions!,
+                            width: 20.w,
+                            height: 20.w,
+                          )
+                        : const SizedBox.shrink(),
           ],
         ),
         bottomNavigationBar: widget.currentIndex != null
